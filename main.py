@@ -5,7 +5,7 @@ import sqlite3
 def pesquisar(criterio, coluna):
     banco = sqlite3.connect('diretorio.db')
     cursor = banco.cursor()
-    cursor.execute(f"SELECT * FROM biblioteca_diretorio WHERE {coluna} = ?", (criterio,))
+    cursor.execute(f"SELECT * FROM biblioteca_diretorio WHERE {coluna} LIKE '%{criterio}%'")
     resultado = cursor.fetchall()
 
     banco.close()
@@ -62,12 +62,12 @@ def gerenciador():
                 livro_encontrado = pesquisar(titulo_busca, coluna= 'titulo')
 
                 if livro_encontrado:
-                    print("\nLivro encontrado:\n")
+                    print(f"\n{len(livro_encontrado)} livro(s) encontrado(s):\n")
                     for livro in livro_encontrado:
-                        print("\nTítulo:", livro[0])
-                        print("Autor:", livro[1])
-                        print("Ano de Publicação:", livro[2])
-                        print("Cópias disponíveis:", livro[3])
+                        print("\nTítulo:", livro[1])
+                        print("Autor:", livro[2])
+                        print("Ano de Publicação:", livro[3])
+                        print("Cópias disponíveis:", livro[4])
                 else:
                     print("Livro não encontrado.")
 
@@ -78,12 +78,12 @@ def gerenciador():
                 livro_encontrado = pesquisar(autor_busca, coluna= 'autor')
 
                 if livro_encontrado:
-                    print("\nLivro encontrado:\n")
+                    print(f"\n{len(livro_encontrado)} livro(s) encontrado(s):\n")
                     for livro in livro_encontrado:
-                        print("\nTítulo:", livro[0])
-                        print("Autor:", livro[1])
-                        print("Ano de Publicação:", livro[2])
-                        print("Cópias disponíveis:", livro[3])
+                        print("\nTítulo:", livro[1])
+                        print("Autor:", livro[2])
+                        print("Ano de Publicação:", livro[3])
+                        print("Cópias disponíveis:", livro[4])
                 else:
                     print("Livro não encontrado.")
 
@@ -94,12 +94,12 @@ def gerenciador():
                 livro_encontrado = pesquisar(ano_de_publicacao_busca, coluna= 'ano_de_publicacao')
 
                 if livro_encontrado:
-                    print("\nLivro encontrado:\n")
+                    print(f"\n{len(livro_encontrado)} livro(s) encontrado(s):\n")
                     for livro in livro_encontrado:
-                        print("\nTítulo:", livro[0])
-                        print("Autor:", livro[1])
-                        print("Ano de Publicação:", livro[2])
-                        print("Cópias disponíveis:", livro[3])
+                        print("\nTítulo:", livro[1])
+                        print("Autor:", livro[2])
+                        print("Ano de Publicação:", livro[3])
+                        print("Cópias disponíveis:", livro[4])
                 else:
                     print("Livro não encontrado.")
         elif escolha == 3:
